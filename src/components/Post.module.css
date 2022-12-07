@@ -1,0 +1,16 @@
+.post + .post {
+  margin-top: 2rem;
+}
+
+.content p {
+  margin-top: 1rem;
+}
+
+.content a {
+  font-weight: bold;
+  color: #00875F;
+}
+
+.content a:hover {
+  color: #00B37E
+}
