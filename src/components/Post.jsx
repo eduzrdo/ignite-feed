@@ -1,3 +1,4 @@
+import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 
 import styles from './Post.module.css';
@@ -7,10 +8,7 @@ export const Post = () => {
     <article className={`bg-gray-800 rounded-lg p-10 ${styles.post}`}>
       <header className='flex items-center justify-between'>
         <div className='flex items-center gap-4'>
-          <img
-            src='https://github.com/EduardoAlphonse.png'
-            className='w-12 h-12 rounded-lg border-4 border-gray-800 outline outline-2 outline-green-500 box-content'
-          />
+          <Avatar src='https://github.com/EduardoAlphonse.png' />
           <div>
             <strong className='text-sm text-gray-100 leading-relaxed block'>
               Eduardo Afonso

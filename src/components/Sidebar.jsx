@@ -1,5 +1,7 @@
 import { PencilSimpleLine } from 'phosphor-react';
 
+import { Avatar } from './Avatar';
+
 export const Sidebar = () => {
   return (
     <aside className='bg-gray-800 rounded-lg overflow-hidden'>
@@ -9,10 +11,7 @@ export const Sidebar = () => {
       />
 
       <div className='flex flex-col items-center mt-[-1.5rem]'>
-        <img
-          src='https://github.com/EduardoAlphonse.png'
-          className='w-12 h-12 rounded-lg border-4 border-gray-800 outline outline-2 outline-green-500 box-content'
-        />
+        <Avatar src='https://github.com/EduardoAlphonse.png' />
         <strong className='mt-4 text-gray-100 leading-relaxed'>
           Eduardo Afonso
         </strong>
