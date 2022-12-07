@@ -19,6 +19,9 @@ module.exports = {
           300: '#00B37E',
           500: '#00875F',
         },
+        red: {
+          500: '#F75A68',
+        },
       },
       fontFamily: {
         sans: ['Roboto', ...defaultTheme.fontFamily.sans],

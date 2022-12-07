@@ -1,3 +1,5 @@
+import { Comment } from './Comment';
+
 import styles from './Post.module.css';
 
 export const Post = () => {
@@ -10,10 +12,10 @@ export const Post = () => {
             className='w-12 h-12 rounded-lg border-4 border-gray-800 outline outline-2 outline-green-500 box-content'
           />
           <div>
-            <strong className='text-gray-100 leading-relaxed block'>
+            <strong className='text-sm text-gray-100 leading-relaxed block'>
               Eduardo Afonso
             </strong>
-            <span className='text-sm text-gray-400 leading-relaxed'>
+            <span className='text-xs text-gray-400 leading-relaxed'>
               Web Developer
             </span>
           </div>
@@ -28,7 +30,7 @@ export const Post = () => {
         </time>
       </header>
 
-      <div className={`leading-relaxed text-gray-300 mt-6 ${styles.content}`}>
+      <div className={`leading-relaxed mt-6 ${styles.content}`}>
         <p>Fala galeraa 👋</p>
         <p>
           Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
@@ -54,12 +56,17 @@ export const Post = () => {
         <footer className='invisible max-h-0 group-focus-within:visible group-focus-within:max-h-fit'>
           <button
             type='submit'
-            className='py-4 px-6 mt-4 rounded-lg border-0 bg-green-500 text-white font-bold cursor-pointer hover:bg-green-300 transition-colors duration-100'
+            className='py-4 px-6 mt-4 rounded-lg border-0 bg-green-500 text-white font-bold cursor-pointer hover:bg-green-300 transition-colors duration-100 focus:outline-none focus:shadow-none'
           >
             Publicar
           </button>
         </footer>
       </form>
+
+      <div className='mt-2'>
+        <Comment />
+        <Comment />
+      </div>
     </article>
   );
 };
