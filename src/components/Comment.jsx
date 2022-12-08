@@ -2,7 +2,7 @@ import { ThumbsUp, Trash } from 'phosphor-react';
 
 import { Avatar } from './Avatar';
 
-export const Comment = () => {
+export const Comment = (props) => {
   return (
     <div className='mt-6 flex gap-4'>
       <Avatar
@@ -28,22 +28,16 @@ export const Comment = () => {
               title='Deletar comentário'
               className='cursor-pointer rounded hover:text-red-500'
             >
-              <Trash
-                // size={24}
-                className='w-6 h-6'
-              />
+              <Trash className='w-6 h-6' />
             </button>
           </header>
 
-          <p className='mt-4'>Muito bom Devon, parabéns!! 👏👏</p>
+          <p className='mt-4'>{props.content}</p>
         </div>
 
         <footer className='mt-4'>
           <button className='text-gray-400 cursor-pointer rounded flex items-center hover:text-green-300'>
-            <ThumbsUp
-              // size={20}
-              className='mr-[10px] w-6 h-6'
-            />
+            <ThumbsUp className='mr-[10px] w-6 h-6' />
             Aplaudir{' '}
             <span className='before:px-1 before:content-["\2022"]'>20</span>
           </button>
