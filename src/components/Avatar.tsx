@@ -1,17 +1,16 @@
-interface AvatarProps {
+import { ImgHTMLAttributes } from 'react';
+
+interface AvatarProps extends ImgHTMLAttributes<HTMLImageElement> {
   hasBorder?: boolean;
-  src: string;
-  alt?: string;
 }
 
-export const Avatar = ({ src, alt, hasBorder = true }: AvatarProps) => {
+export const Avatar = ({ hasBorder = true, ...props }: AvatarProps) => {
   return (
     <img
-      src={src}
-      alt={alt}
       className={`w-12 h-12 rounded-lg border-4 border-gray-800 box-content ${
         hasBorder ? 'outline outline-2 outline-green-500' : ''
       }`}
+      {...props}
     />
   );
 };
