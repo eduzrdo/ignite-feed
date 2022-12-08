@@ -2,7 +2,11 @@ import { ThumbsUp, Trash } from 'phosphor-react';
 
 import { Avatar } from './Avatar';
 
-export const Comment = (props) => {
+export const Comment = ({ content, onDeleteComment }) => {
+  function handleDeleteComment() {
+    onDeleteComment(content);
+  }
+
   return (
     <div className='mt-6 flex gap-4'>
       <Avatar
@@ -26,13 +30,14 @@ export const Comment = (props) => {
 
             <button
               title='Deletar comentário'
+              onClick={handleDeleteComment}
               className='cursor-pointer rounded hover:text-red-500'
             >
               <Trash className='w-6 h-6' />
             </button>
           </header>
 
-          <p className='mt-4'>{props.content}</p>
+          <p className='mt-4'>{content}</p>
         </div>
 
         <footer className='mt-4'>
