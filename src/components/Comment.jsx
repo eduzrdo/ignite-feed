@@ -28,7 +28,10 @@ export const Comment = () => {
               title='Deletar comentário'
               className='cursor-pointer rounded hover:text-red-500'
             >
-              <Trash size={24} />
+              <Trash
+                // size={24}
+                className='w-6 h-6'
+              />
             </button>
           </header>
 
@@ -38,8 +41,8 @@ export const Comment = () => {
         <footer className='mt-4'>
           <button className='text-gray-400 cursor-pointer rounded flex items-center hover:text-green-300'>
             <ThumbsUp
-              size={20}
-              className='mr-[10px]'
+              // size={20}
+              className='mr-[10px] w-6 h-6'
             />
             Aplaudir{' '}
             <span className='before:px-1 before:content-["\2022"]'>20</span>
