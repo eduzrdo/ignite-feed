@@ -45,7 +45,7 @@ function App() {
             <Post
               key={post.id}
               id={post.id}
-              author={post.owner}
+              owner={post.owner}
               text={post.text}
               tags={post.tags}
               publishDate={post.publishDate}

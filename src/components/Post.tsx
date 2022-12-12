@@ -16,13 +16,13 @@ export interface Owner {
 
 export interface PostProps {
   id: string;
-  author: Owner;
+  owner: Owner;
   text: string;
   tags: string[];
   publishDate: string;
 }
 
-export const Post = ({ author, publishDate, text, tags }: PostProps) => {
+export const Post = ({ owner, publishDate, text, tags }: PostProps) => {
   const [comments, setComments] = useState<string[]>([]);
   const [newCommentText, setNewCommentText] = useState('');
 
@@ -67,14 +67,13 @@ export const Post = ({ author, publishDate, text, tags }: PostProps) => {
     <article className={`bg-gray-800 rounded-lg p-10 ${styles.post}`}>
       <header className='flex items-center justify-between'>
         <div className='flex items-center gap-4'>
-          <Avatar src={author.picture} />
+          <Avatar src={owner.picture} />
           <div>
             <strong className='text-sm text-gray-100 leading-relaxed block'>
-              {author.firstName} {author.lastName}
+              {owner.firstName} {owner.lastName}
             </strong>
             <span className='text-xs text-gray-400 leading-relaxed'>
-              {author.title.toUpperCase()}
-              {/* {author.role} */}
+              {owner.title.toUpperCase()}
             </span>
           </div>
         </div>
