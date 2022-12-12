@@ -1,65 +1,39 @@
+import { useEffect, useState } from 'react';
+
 import { Header } from './components/Header';
-import { Post } from './components/Post';
+import { Post, Owner } from './components/Post';
 import { Sidebar } from './components/Sidebar';
 
-import { PostProps } from './components/Post';
+import { api } from './api';
 
-interface Post extends PostProps {
-  id: number;
+interface PostResponseData {
+  id: string;
+  text: string;
+  // image: string;
+  likes: number;
+  // link: string;
+  tags: string[];
+  publishDate: string;
+  owner: Owner;
 }
 
-const posts: Post[] = [
-  {
-    id: 1,
-    author: {
-      avatarUrl: 'https://github.com/EduardoAlphonse.png',
-      name: 'Eduardo Afonso',
-      role: 'Web/Mobile Developer',
-    },
-    content: [
-      {
-        type: 'paragraph',
-        content: 'Fala galeraa 👋',
-      },
-      {
-        type: 'paragraph',
-        content:
-          'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀',
-      },
-      {
-        type: 'link',
-        content: '👉 jane.design/doctorcare',
-      },
-    ],
-    publishedAt: new Date('2022-12-08 00:08:42'),
-  },
-  {
-    id: 2,
-    author: {
-      avatarUrl: 'https://github.com/diego3g.png',
-      name: 'Diego Fernandes',
-      role: 'CTO @Rocketseat',
-    },
-    content: [
-      {
-        type: 'paragraph',
-        content: 'Fala galeraa 👋',
-      },
-      {
-        type: 'paragraph',
-        content:
-          'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀',
-      },
-      {
-        type: 'link',
-        content: '👉 jane.design/doctorcare',
-      },
-    ],
-    publishedAt: new Date('2022-12-04 08:07:23'),
-  },
-];
+interface PostResponse {
+  data: PostResponseData[];
+  limit: number;
+  page: number;
+  total: number;
+}
 
 function App() {
+  const [posts, setPosts] = useState<PostResponseData[]>([]);
+
+  useEffect(() => {
+    (async function () {
+      const response = await api.get<PostResponse>('/post');
+      setPosts(response.data.data);
+    })();
+  }, []);
+
   return (
     <div>
       <Header />
@@ -70,9 +44,11 @@ function App() {
           {posts.map((post) => (
             <Post
               key={post.id}
-              author={post.author}
-              content={post.content}
-              publishedAt={post.publishedAt}
+              id={post.id}
+              author={post.owner}
+              text={post.text}
+              tags={post.tags}
+              publishDate={post.publishDate}
             />
           ))}
         </main>

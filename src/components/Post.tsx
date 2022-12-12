@@ -6,35 +6,33 @@ import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 
 import styles from './Post.module.css';
-
-interface Author {
-  name: string;
-  role: string;
-  avatarUrl: string;
-}
-
-interface Content {
-  type: 'paragraph' | 'link';
-  content: string;
+export interface Owner {
+  id: string;
+  firstName: string;
+  lastName: string;
+  title: 'mr' | 'ms' | 'mrs' | 'miss' | 'dr' | '';
+  picture: string;
 }
 
 export interface PostProps {
-  author: Author;
-  publishedAt: Date;
-  content: Content[];
+  id: string;
+  author: Owner;
+  text: string;
+  tags: string[];
+  publishDate: string;
 }
 
-export const Post = ({ author, publishedAt, content }: PostProps) => {
+export const Post = ({ author, publishDate, text, tags }: PostProps) => {
   const [comments, setComments] = useState(['Post massinha demais, hein?!']);
   const [newCommentText, setNewCommentText] = useState('');
 
-  const formattedPublishedDate = format(
-    publishedAt,
-    "d 'de' MMMM 'às' HH:mm'h'",
-    { locale: ptBR }
-  );
+  const date = new Date(publishDate);
 
-  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+  const formattedPublishedDate = format(date, "d 'de' MMMM 'às' HH:mm'h'", {
+    locale: ptBR,
+  });
+
+  const publishedDateRelativeToNow = formatDistanceToNow(date, {
     locale: ptBR,
     addSuffix: true,
   });
@@ -69,20 +67,21 @@ export const Post = ({ author, publishedAt, content }: PostProps) => {
     <article className={`bg-gray-800 rounded-lg p-10 ${styles.post}`}>
       <header className='flex items-center justify-between'>
         <div className='flex items-center gap-4'>
-          <Avatar src={author.avatarUrl} />
+          <Avatar src={author.picture} />
           <div>
             <strong className='text-sm text-gray-100 leading-relaxed block'>
-              {author.name}
+              {author.firstName} {author.lastName}
             </strong>
             <span className='text-xs text-gray-400 leading-relaxed'>
-              {author.role}
+              {author.title.toUpperCase()}
+              {/* {author.role} */}
             </span>
           </div>
         </div>
 
         <time
           title={formattedPublishedDate}
-          dateTime={publishedAt.toISOString()}
+          dateTime={date.toISOString()}
           className='text-sm text-gray-400'
         >
           {publishedDateRelativeToNow}
@@ -90,7 +89,19 @@ export const Post = ({ author, publishedAt, content }: PostProps) => {
       </header>
 
       <div className={`leading-relaxed mt-6 ${styles.content}`}>
-        {content.map((line) => {
+        <p>{text}</p>
+        <p className='flex gap-2'>
+          {tags.map((tag) => (
+            <a
+              key={tag}
+              href='#'
+            >
+              #{tag}
+            </a>
+          ))}
+        </p>
+
+        {/* {content.map((line) => {
           switch (line.type) {
             case 'paragraph':
               return <p key={line.content}>{line.content}</p>;
@@ -101,7 +112,7 @@ export const Post = ({ author, publishedAt, content }: PostProps) => {
                 </p>
               );
           }
-        })}
+        })} */}
       </div>
 
       <form
