@@ -23,7 +23,7 @@ export interface PostProps {
 }
 
 export const Post = ({ author, publishDate, text, tags }: PostProps) => {
-  const [comments, setComments] = useState(['Post massinha demais, hein?!']);
+  const [comments, setComments] = useState<string[]>([]);
   const [newCommentText, setNewCommentText] = useState('');
 
   const date = new Date(publishDate);
@@ -100,19 +100,6 @@ export const Post = ({ author, publishDate, text, tags }: PostProps) => {
             </a>
           ))}
         </p>
-
-        {/* {content.map((line) => {
-          switch (line.type) {
-            case 'paragraph':
-              return <p key={line.content}>{line.content}</p>;
-            case 'link':
-              return (
-                <p key={line.content}>
-                  <a href='#'>{line.content}</a>
-                </p>
-              );
-          }
-        })} */}
       </div>
 
       <form
@@ -142,15 +129,17 @@ export const Post = ({ author, publishDate, text, tags }: PostProps) => {
         </footer>
       </form>
 
-      <div className='mt-2'>
-        {comments.map((comment) => (
-          <Comment
-            key={comment}
-            content={comment}
-            onDeleteComment={deleteComment}
-          />
-        ))}
-      </div>
+      {comments.length > 0 && (
+        <div className='mt-2'>
+          {comments.map((comment) => (
+            <Comment
+              key={comment}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          ))}
+        </div>
+      )}
     </article>
   );
 };
