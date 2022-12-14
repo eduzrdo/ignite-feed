@@ -1,9 +1,9 @@
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
+import { ChatTeardropText, HandsClapping, Link } from 'phosphor-react';
 import { format, formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { Avatar } from './Avatar';
-import { Comment } from './Comment';
 
 import styles from './Post.module.css';
 export interface Owner {
@@ -20,9 +20,12 @@ export interface PostProps {
   text: string;
   tags: string[];
   publishDate: string;
+  likes: number;
+  // image: string;
+  // link: string;
 }
 
-export const Post = ({ owner, publishDate, text, tags }: PostProps) => {
+export const Post = ({ owner, publishDate, text, tags, likes }: PostProps) => {
   const [comments, setComments] = useState<string[]>([]);
   const [newCommentText, setNewCommentText] = useState('');
 
@@ -101,7 +104,33 @@ export const Post = ({ owner, publishDate, text, tags }: PostProps) => {
         </p>
       </div>
 
-      <form
+      <footer
+        onSubmit={handleCreateNewComment}
+        className='flex justify-around mt-6 pt-6 border-t border-gray-600 group'
+      >
+        <button
+          onClick={() => {}}
+          className='text-gray-400 cursor-pointer rounded flex items-center hover:text-green-300'
+        >
+          <HandsClapping className='w-6 h-6' />
+          <span className='before:px-1 before:content-["\2022"]'>{likes}</span>
+        </button>
+        <button
+          onClick={() => {}}
+          className='text-gray-400 cursor-pointer rounded flex items-center hover:text-green-300'
+        >
+          <ChatTeardropText className='w-6 h-6' />
+          <span className='before:px-1 before:content-["\2022"]'>0</span>
+        </button>
+        <button
+          onClick={() => {}}
+          className='text-gray-400 cursor-pointer rounded flex items-center hover:text-green-300'
+        >
+          <Link className='w-6 h-6' />
+        </button>
+      </footer>
+
+      {/* <form
         onSubmit={handleCreateNewComment}
         className='w-full mt-6 pt-6 border-t border-gray-600 group'
       >
@@ -126,9 +155,9 @@ export const Post = ({ owner, publishDate, text, tags }: PostProps) => {
             Publicar
           </button>
         </footer>
-      </form>
+      </form> */}
 
-      {comments.length > 0 && (
+      {/* {comments.length > 0 && (
         <div className='mt-2'>
           {comments.map((comment) => (
             <Comment
@@ -138,7 +167,7 @@ export const Post = ({ owner, publishDate, text, tags }: PostProps) => {
             />
           ))}
         </div>
-      )}
+      )} */}
     </article>
   );
 };

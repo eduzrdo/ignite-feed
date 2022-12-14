@@ -1,35 +1,25 @@
 import { useEffect, useState } from 'react';
 
 import { Header } from './components/Header';
-import { Post, Owner } from './components/Post';
+import { Post, Owner, PostProps } from './components/Post';
 import { Sidebar } from './components/Sidebar';
 
 import { api } from './api';
 
-interface PostResponseData {
-  id: string;
-  text: string;
-  // image: string;
-  likes: number;
-  // link: string;
-  tags: string[];
-  publishDate: string;
-  owner: Owner;
-}
-
 interface PostResponse {
-  data: PostResponseData[];
+  data: PostProps[];
   limit: number;
   page: number;
   total: number;
 }
 
 function App() {
-  const [posts, setPosts] = useState<PostResponseData[]>([]);
+  const [posts, setPosts] = useState<PostProps[]>([]);
 
   useEffect(() => {
     (async function () {
       const response = await api.get<PostResponse>('/post');
+      console.log(response.data.data);
       setPosts(response.data.data);
     })();
   }, []);
@@ -49,6 +39,7 @@ function App() {
               text={post.text}
               tags={post.tags}
               publishDate={post.publishDate}
+              likes={post.likes}
             />
           ))}
         </main>

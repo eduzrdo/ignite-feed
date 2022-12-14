@@ -6,7 +6,7 @@ export const Sidebar = () => {
   return (
     <aside className='bg-gray-800 rounded-lg overflow-hidden'>
       <img
-        src='https://images.unsplash.com/photo-1493552152660-f915ab47ae9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=50'
+        src='https://images.unsplash.com/photo-1493552152660-f915ab47ae9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=50'
         className='w-full h-[72px] object-cover'
       />
 
