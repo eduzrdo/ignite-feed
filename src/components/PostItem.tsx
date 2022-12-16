@@ -91,8 +91,7 @@ export const PostItem = ({
   // }
 
   async function handleDeletePost(event: MouseEvent<HTMLButtonElement>) {
-    event.stopPropagation();
-    // stop propagation not work, since button's father element is a Link form react-router-dom
+    event.preventDefault();
 
     const confirmDeletion = window.confirm(
       'Tem certeza que deseja excluir a publicação?'
