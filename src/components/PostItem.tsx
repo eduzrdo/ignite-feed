@@ -116,16 +116,18 @@ export const PostItem = ({
 
         <div className={`leading-relaxed mt-6 ${styles.content}`}>
           <p>{text}</p>
-          <p className='flex gap-2'>
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                // href='#'
-              >
-                #{tag}
-              </span>
-            ))}
-          </p>
+          {tags.length > 0 && (
+            <p className='flex gap-2'>
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  // href='#'
+                >
+                  #{tag}
+                </span>
+              ))}
+            </p>
+          )}
         </div>
 
         <footer className='flex justify-around mt-6 pt-6 border-t border-gray-600 group'>
