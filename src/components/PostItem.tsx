@@ -1,9 +1,9 @@
 import {
-  ChangeEvent,
-  FormEvent,
-  InvalidEvent,
+  // ChangeEvent,
+  // FormEvent,
+  // InvalidEvent,
   ReactNode,
-  useState,
+  // useState,
 } from 'react';
 import {
   ChatTeardropText,
@@ -47,8 +47,8 @@ export const PostItem = ({
   likes,
   isLink = true,
 }: PostItemProps) => {
-  const [comments, setComments] = useState<string[]>([]);
-  const [newCommentText, setNewCommentText] = useState('');
+  // const [comments, setComments] = useState<string[]>([]);
+  // const [newCommentText, setNewCommentText] = useState('');
 
   const date = new Date(publishDate);
 
@@ -61,31 +61,31 @@ export const PostItem = ({
     addSuffix: true,
   });
 
-  function handleCreateNewComment(event: FormEvent) {
-    event.preventDefault();
+  // function handleCreateNewComment(event: FormEvent) {
+  //   event.preventDefault();
 
-    setComments([newCommentText, ...comments]);
-    setNewCommentText('');
-  }
+  //   setComments([newCommentText, ...comments]);
+  //   setNewCommentText('');
+  // }
 
-  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    event.target.setCustomValidity('');
-    setNewCommentText(event.target.value);
-  }
+  // function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
+  //   event.target.setCustomValidity('');
+  //   setNewCommentText(event.target.value);
+  // }
 
-  function handleInvalidComment(event: InvalidEvent<HTMLTextAreaElement>) {
-    event.target.setCustomValidity('Este campo é obrigatório!');
-  }
+  // function handleInvalidComment(event: InvalidEvent<HTMLTextAreaElement>) {
+  //   event.target.setCustomValidity('Este campo é obrigatório!');
+  // }
 
-  function deleteComment(commentToDelete: string) {
-    const newComments = comments.filter(
-      (comment) => comment !== commentToDelete
-    );
+  // function deleteComment(commentToDelete: string) {
+  //   const newComments = comments.filter(
+  //     (comment) => comment !== commentToDelete
+  //   );
 
-    setComments(newComments);
-  }
+  //   setComments(newComments);
+  // }
 
-  const isNewCommentEmpty = newCommentText.length === 0;
+  // const isNewCommentEmpty = newCommentText.length === 0;
 
   const Container = isLink ? LinkContainer : RawContainer;
 
@@ -128,10 +128,7 @@ export const PostItem = ({
           </p>
         </div>
 
-        <footer
-          onSubmit={handleCreateNewComment}
-          className='flex justify-around mt-6 pt-6 border-t border-gray-600 group'
-        >
+        <footer className='flex justify-around mt-6 pt-6 border-t border-gray-600 group'>
           <button
             onClick={() => {}}
             className='text-gray-400 cursor-pointer rounded flex items-center hover:text-green-300'
