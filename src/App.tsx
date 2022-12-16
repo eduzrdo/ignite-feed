@@ -1,9 +1,43 @@
+import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
+import { api } from './api';
+import { createUser, getUser } from './services/user';
 
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 
 function App() {
+  // useEffect(() => {
+  //   (async function () {
+  //     const createdUser = await createUser({
+  //       title: 'mr',
+  //       firstName: 'Eduardo',
+  //       lastName: 'Oliveira',
+  //       gender: 'male',
+  //       email: 'eduardoliveira.dev@gmail.com',
+  //       dateOfBirth: new Date('1993-04-17 14:27:00'),
+  //       phone: '+5532988887777',
+  //       picture: 'https://github.com/EduardoAlphonse.png',
+  //       location: {
+  //         street: 'Av. Rio Branco, 1042',
+  //         city: 'Juiz de Fora',
+  //         state: 'Minas Gerais',
+  //         country: 'Brasil',
+  //         timezone: -3,
+  //       },
+  //     });
+
+  //     console.log(createdUser);
+  //   })();
+  // }, []);
+
+  // useEffect(() => {
+  //   (async function () {
+  //     const user = await getUser('639bf1876870a4438cde5d16');
+  //     console.log(user);
+  //   })();
+  // }, []);
+
   return (
     <div>
       <Header />
