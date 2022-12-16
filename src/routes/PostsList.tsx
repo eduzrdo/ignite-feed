@@ -32,6 +32,6 @@ export const PostsList = () => {
 };
 
 export async function postsListLoader() {
-  const response = await api.get<PostResponse>('/post');
+  const response = await api.get<PostResponse>('/post?created=1');
   return response.data;
 }

@@ -1,5 +1,13 @@
 import { api } from '../api';
 
+export interface UserPreview {
+  id: string;
+  title: 'mr' | 'ms' | 'mrs' | 'miss' | 'dr' | '';
+  firstName: string;
+  lastName: string;
+  picture: string;
+}
+
 interface User {
   title: 'mr' | 'ms' | 'mrs' | 'miss' | 'dr' | '';
   firstName: string;

@@ -1,16 +1,28 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { createPost } from '../services/post';
 
 export const NewPost = () => {
   const [newPostText, setNewPostText] = useState('');
+
+  const navigate = useNavigate();
 
   function handleNewPostTextChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setNewPostText(event.target.value);
   }
 
-  function handleCreatePost(event: FormEvent) {
+  async function handleCreatePost(event: FormEvent) {
     event.preventDefault();
-    console.log('create post\n', newPostText);
     setNewPostText('');
+
+    const createdPost = await createPost({
+      owner: '639bf1876870a4438cde5d16',
+      text: newPostText,
+      tags: ['test', 'post', 'weeee'],
+    });
+
+    navigate(`${createdPost.owner.id}/post/${createdPost.id}`);
   }
 
   const isNewPostTextEmpty = newPostText.length === 0;
