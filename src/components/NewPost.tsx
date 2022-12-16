@@ -29,6 +29,8 @@ export const NewPost = () => {
 
   async function handleCreatePost(event: FormEvent) {
     event.preventDefault();
+    if (posting) return;
+
     setPosting(true);
 
     const createdPost = await createPost({
@@ -77,14 +79,12 @@ export const NewPost = () => {
           />
         </label>
 
-        <footer
-          className='
-          '
-        >
+        <footer className='hidden group-focus-within:block'>
           <button
             type='submit'
-            disabled={isNewPostTextEmpty || posting}
-            className='flex justify-center w-full py-4 px-6 mt-4 rounded-lg border-0 bg-green-500 text-white font-bold cursor-pointer [&:not(:disabled)]:hover:bg-green-300 transition-colors duration-100 focus:outline-none focus:shadow-none disabled:cursor-not-allowed disabled:opacity-70'
+            className={`flex justify-center w-full py-4 px-6 mt-4 rounded-lg border-0 bg-green-500 text-white font-bold cursor-pointer ${
+              posting ? 'cursor-not-allowed' : 'hover:bg-green-300'
+            } transition-colors duration-100 focus:outline-none focus:shadow-none disabled:cursor-not-allowed disabled:opacity-70`}
           >
             {!posting && 'Publicar'}
             <HashLoader
