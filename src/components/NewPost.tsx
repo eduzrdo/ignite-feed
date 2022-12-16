@@ -1,10 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HashLoader } from 'react-spinners';
 
 import { createPost } from '../services/post';
 
 export const NewPost = () => {
   const [newPostText, setNewPostText] = useState('');
+  const [posting, setPosting] = useState(false);
 
   const navigate = useNavigate();
 
@@ -14,7 +16,7 @@ export const NewPost = () => {
 
   async function handleCreatePost(event: FormEvent) {
     event.preventDefault();
-    setNewPostText('');
+    setPosting(true);
 
     const createdPost = await createPost({
       owner: '639bf1876870a4438cde5d16',
@@ -23,6 +25,8 @@ export const NewPost = () => {
     });
 
     navigate(`${createdPost.owner.id}/post/${createdPost.id}`);
+    setNewPostText('');
+    setPosting(false);
   }
 
   const isNewPostTextEmpty = newPostText.length === 0;
@@ -46,13 +50,22 @@ export const NewPost = () => {
           required
         />
 
-        <footer className='invisible max-h-0 group-focus-within:visible group-focus-within:max-h-fit'>
+        <footer
+          className='
+          '
+        >
           <button
             type='submit'
-            disabled={isNewPostTextEmpty}
-            className='w-full py-4 px-6 mt-4 rounded-lg border-0 bg-green-500 text-white font-bold cursor-pointer [&:not(:disabled)]:hover:bg-green-300 transition-colors duration-100 focus:outline-none focus:shadow-none disabled:cursor-not-allowed disabled:opacity-70'
+            disabled={isNewPostTextEmpty || posting}
+            className='flex justify-center w-full py-4 px-6 mt-4 rounded-lg border-0 bg-green-500 text-white font-bold cursor-pointer [&:not(:disabled)]:hover:bg-green-300 transition-colors duration-100 focus:outline-none focus:shadow-none disabled:cursor-not-allowed disabled:opacity-70'
           >
-            Publicar
+            {!posting && 'Publicar'}
+            <HashLoader
+              color='#FFFFFF'
+              loading={posting}
+              size={24}
+              aria-label='Loading Spinner'
+            />
           </button>
         </footer>
       </form>
