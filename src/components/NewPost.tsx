@@ -39,13 +39,11 @@ export const NewPost = () => {
       tags: tags.length > 0 ? tags.split(' ') : [],
     });
 
-    navigate(`${createdPost.owner.id}/post/${createdPost.id}`);
+    navigate(`/${createdPost.owner.id}/post/${createdPost.id}`);
     setNewPostText('');
     setTags('');
     setPosting(false);
   }
-
-  const isNewPostTextEmpty = newPostText.length === 0;
 
   return (
     <div className='mt-4 p-4 rounded-lg bg-gray-800'>

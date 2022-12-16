@@ -24,3 +24,8 @@ export async function createPost(post: Post) {
   const response = await api.post<PostResponse>('/post/create', post);
   return response.data;
 }
+
+export async function deletePost(postId: string) {
+  const response = await api.delete<string>(`/post/${postId}`);
+  return response.data;
+}

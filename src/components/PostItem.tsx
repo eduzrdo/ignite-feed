@@ -1,4 +1,5 @@
 import {
+  MouseEvent,
   // ChangeEvent,
   // FormEvent,
   // InvalidEvent,
@@ -9,12 +10,15 @@ import {
   ChatTeardropText,
   HandsClapping,
   Link as LinkIcon,
+  Trash,
 } from 'phosphor-react';
 import { Link } from 'react-router-dom';
 import { format, formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import { useNavigate } from 'react-router-dom';
 
 import { Avatar } from './Avatar';
+import { deletePost } from '../services/post';
 
 import styles from './PostItem.module.css';
 
@@ -49,6 +53,7 @@ export const PostItem = ({
 }: PostItemProps) => {
   // const [comments, setComments] = useState<string[]>([]);
   // const [newCommentText, setNewCommentText] = useState('');
+  const navigate = useNavigate();
 
   const date = new Date(publishDate);
 
@@ -84,6 +89,22 @@ export const PostItem = ({
 
   //   setComments(newComments);
   // }
+
+  async function handleDeletePost(event: MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation();
+    // stop propagation not work, since button's father element is a Link form react-router-dom
+
+    const confirmDeletion = window.confirm(
+      'Tem certeza que deseja excluir a publicação?'
+    );
+
+    if (!confirmDeletion) return;
+
+    const response = await deletePost(id);
+    console.log(response);
+    alert('Publicação excluída com sucesso.');
+    navigate('/inicio');
+  }
 
   // const isNewCommentEmpty = newCommentText.length === 0;
 
@@ -140,6 +161,7 @@ export const PostItem = ({
               {likes}
             </span>
           </button>
+
           <button
             onClick={() => {}}
             className='text-gray-400 cursor-pointer rounded flex items-center hover:text-green-300'
@@ -147,11 +169,19 @@ export const PostItem = ({
             <ChatTeardropText className='w-6 h-6' />
             <span className='before:px-1 before:content-["\2022"]'>0</span>
           </button>
+
           <button
             onClick={() => {}}
             className='text-gray-400 cursor-pointer rounded flex items-center hover:text-green-300'
           >
             <LinkIcon className='w-6 h-6' />
+          </button>
+
+          <button
+            onClick={handleDeletePost}
+            className='text-gray-400 cursor-pointer rounded flex items-center hover:text-red-500'
+          >
+            <Trash className='w-6 h-6' />
           </button>
         </footer>
 
