@@ -31,7 +31,7 @@ export const PostsList = () => {
   );
 };
 
-export async function postsLoader() {
+export async function postsListLoader() {
   const response = await api.get<PostResponse>('/post');
   return response.data;
 }

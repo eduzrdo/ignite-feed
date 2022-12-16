@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from '../App';
 import { Error } from './Error';
 import { Post, postLoader } from './Post';
-import { PostsList, postsLoader } from './PostsList';
+import { PostsList, postsListLoader } from './PostsList';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
       {
         path: 'inicio',
         element: <PostsList />,
-        loader: postsLoader,
+        loader: postsListLoader,
       },
       {
         path: ':userId/post/:postId',
@@ -24,6 +24,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-], { basename: '/inicio' });
+]);
 
 export const Router = () => <RouterProvider router={router} />;
