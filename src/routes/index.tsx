@@ -24,6 +24,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], { basename: '/inicio' });
 
 export const Router = () => <RouterProvider router={router} />;
